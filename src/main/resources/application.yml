@@ -1,0 +1,9 @@
+spring:
+  r2dbc:
+    url: "r2dbc:postgresql://localhost:5432/musicplayerreactive"
+    username: postgres
+    password: postgres
+
+
+server:
+  port: 8082
