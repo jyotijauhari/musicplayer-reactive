@@ -15,9 +15,4 @@ class MusicPlayerController(val musicPlayerService: MusicPlayerService) {
         return musicPlayerService.getAllSongs()
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    fun saveSong(@RequestBody song: MusicPlayerModel){
-
-    }
 }

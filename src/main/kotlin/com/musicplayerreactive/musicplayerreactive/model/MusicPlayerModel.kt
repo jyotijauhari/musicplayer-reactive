@@ -1,8 +1,7 @@
 package com.musicplayerreactive.musicplayerreactive.model
-import com.fasterxml.jackson.annotation.JsonFormat
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
-import java.util.*
+import java.sql.Date
 
 @Table(name = "songs")
 class MusicPlayerModel(
@@ -11,7 +10,6 @@ class MusicPlayerModel(
     val name: String,
     val composer: String,
     val language: String,
-    @field:JsonFormat(pattern = "yyyy-MM-dd")
-    val releaseDate: Date,
+    val release_date: Date,
 ) {
 }
