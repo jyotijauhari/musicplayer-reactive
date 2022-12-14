@@ -6,6 +6,7 @@ import com.musicplayerreactive.musicplayerreactive.services.MusicPlayerService
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/songs")
@@ -17,7 +18,7 @@ class MusicPlayerController(val musicPlayerService: MusicPlayerService) {
     }
 
     @PostMapping
-    fun save(@RequestBody songRequest: SongRequest): Mono<MusicPlayerModel> {
+    fun save(@Valid @RequestBody songRequest: SongRequest): Mono<MusicPlayerModel> {
         return musicPlayerService.save(songRequest)
     }
 
