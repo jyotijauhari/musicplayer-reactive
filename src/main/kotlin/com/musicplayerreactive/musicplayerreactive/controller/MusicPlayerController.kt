@@ -22,4 +22,10 @@ class MusicPlayerController(val musicPlayerService: MusicPlayerService) {
         return musicPlayerService.save(songRequest)
     }
 
+    @PutMapping("/{id}")
+    fun updateSong(@Valid @RequestBody songRequest: SongRequest, @PathVariable id:Int): Mono<MusicPlayerModel>{
+        return musicPlayerService.updateSong(id, songRequest)
+    }
+
+
 }

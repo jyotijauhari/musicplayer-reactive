@@ -1,4 +1,5 @@
 package com.musicplayerreactive.musicplayerreactive.services
+import NotFoundException
 import com.musicplayerreactive.musicplayerreactive.model.MusicPlayerModel
 import com.musicplayerreactive.musicplayerreactive.model.SongRequest
 import com.musicplayerreactive.musicplayerreactive.repository.MusicPlayerRepository
@@ -22,6 +23,30 @@ class MusicPlayerService(val repository: MusicPlayerRepository) {
                 release_date = songRequest.release_date
             )
         )
+    }
+
+    fun updateSong(id: Int, songRequest: SongRequest): Mono<MusicPlayerModel> {
+        return findById(id)
+            .flatMap { song ->
+                repository.save(
+                    MusicPlayerModel(
+                        id = id,
+                        name = songRequest.name,
+                        composer = songRequest.composer,
+                        language = songRequest.language,
+                        release_date = songRequest.release_date
+                    )
+                )
+            }
+    }
+
+    private fun findById(id: Int): Mono<MusicPlayerModel> {
+        return repository.findById(id)
+            .switchIfEmpty(
+                Mono.error(
+                    NotFoundException("song with id $id not found")
+                )
+            )
     }
 
 
