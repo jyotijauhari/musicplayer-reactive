@@ -49,6 +49,13 @@ class MusicPlayerService(val repository: MusicPlayerRepository) {
             )
     }
 
+    fun deleteSong(id: Int): Mono<Void> {
+        return repository.findById(id)
+            .flatMap { song ->
+                repository.deleteById(id
+                )
+            }
+    }
 
 }
 

@@ -3,6 +3,7 @@ package com.musicplayerreactive.musicplayerreactive.controller
 import com.musicplayerreactive.musicplayerreactive.model.MusicPlayerModel
 import com.musicplayerreactive.musicplayerreactive.model.SongRequest
 import com.musicplayerreactive.musicplayerreactive.services.MusicPlayerService
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -32,7 +33,10 @@ class MusicPlayerController(val musicPlayerService: MusicPlayerService) {
         return musicPlayerService.updateSong(id, songRequest)
     }
 
-
-
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteSong(@PathVariable id:Int): Mono<Void>{
+        return musicPlayerService.deleteSong(id)
+    }
 
 }
