@@ -17,6 +17,11 @@ class MusicPlayerController(val musicPlayerService: MusicPlayerService) {
         return musicPlayerService.getAllSongs()
     }
 
+    @GetMapping("/{id}")
+    fun findSongById(@PathVariable id:Int): Mono<MusicPlayerModel> {
+        return musicPlayerService.findById(id)
+    }
+
     @PostMapping
     fun save(@Valid @RequestBody songRequest: SongRequest): Mono<MusicPlayerModel> {
         return musicPlayerService.save(songRequest)
@@ -26,6 +31,8 @@ class MusicPlayerController(val musicPlayerService: MusicPlayerService) {
     fun updateSong(@Valid @RequestBody songRequest: SongRequest, @PathVariable id:Int): Mono<MusicPlayerModel>{
         return musicPlayerService.updateSong(id, songRequest)
     }
+
+
 
 
 }

@@ -40,7 +40,7 @@ class MusicPlayerService(val repository: MusicPlayerRepository) {
             }
     }
 
-    private fun findById(id: Int): Mono<MusicPlayerModel> {
+    fun findById(id: Int): Mono<MusicPlayerModel> {
         return repository.findById(id)
             .switchIfEmpty(
                 Mono.error(
